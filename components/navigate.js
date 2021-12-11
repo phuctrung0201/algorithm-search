@@ -4,7 +4,7 @@ import {
   ChevronRightIcon,
   ChevronUpIcon,
 } from "@chakra-ui/icons";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Button } from "@chakra-ui/button";
 
 const NavigateEvent = {
@@ -13,11 +13,12 @@ const NavigateEvent = {
 };
 
 function NavigateItem(props) {
-  const nonsubs = !props.subs.length;
-  const data = props.eventData;
-  const event = nonsubs
-    ? NavigateEvent.REDIRECT
-    : NavigateEvent.TOGGLE_COLLAPSE;
+  const nonsubs = useMemo(() => !props.subs.length, [props.subs.length]);
+  const data = useMemo(() => props.eventData, [props.eventData]);
+  const event = useMemo(
+    () => (nonsubs ? NavigateEvent.REDIRECT : NavigateEvent.TOGGLE_COLLAPSE),
+    [nonsubs]
+  );
 
   const [collapse, setCollapse] = useState(false);
 
@@ -42,7 +43,7 @@ function NavigateItem(props) {
       {!nonsubs && collapse && <ChevronUpIcon />}
       <Button
         onClick={clickHandle}
-        justifyContent="right"
+        justifyContent="left"
         colorScheme="teal"
         variant="link"
       >

@@ -1,35 +1,48 @@
-import { Box, Container, Grid, GridItem } from "@chakra-ui/layout";
-import { Input } from "@chakra-ui/react";
+import StandardLayout from "../layout/standard-layout";
+import { AspectRatio, Box, Grid, GridItem, Text } from "@chakra-ui/react";
 import { connect } from "react-redux";
-import Navigate from "../components/navigate";
 
-const mapState2NavigateProps = (state) => ({
-  items: state.app.algorithmsList,
+function NewsList(props) {
+  return (
+    <>
+      {props.news.map((n) => (
+        <Box key={n.id} mt={4} p={4} bg="white">
+          <Text fontSize="2xl">{n.title}</Text>
+          <Grid templateColumns="repeat(4, 1fr)" gap={4} mt={4}>
+            <GridItem colSpan={1}>
+              <AspectRatio ratio={4 / 3}>
+                {n.thumbnail.type != "video" ? null : (
+                  <iframe
+                    src={n.thumbnail.url}
+                    title={n.title}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  ></iframe>
+                )}
+              </AspectRatio>
+            </GridItem>
+            <GridItem colSpan={3}>
+              <Text>{n.description}</Text>
+            </GridItem>
+          </Grid>
+        </Box>
+      ))}
+    </>
+  );
+}
+
+const mapState2NewsListProps = (state) => ({
+  news: state.new.data,
 });
 
-const ConnectedNavigate = connect(mapState2NavigateProps)(Navigate);
+const ConnectedNewsList = connect(mapState2NewsListProps)(NewsList);
 
 export default function Home() {
   return (
-    <Box bg="red.500" py={8}>
-      <Container maxW="container.xl">
-        <Grid templateColumns="repeat(5, 1fr)" gap={4}>
-          <GridItem colSpan={5}>
-            <Box bg="white" p={4} borderRadius="md">
-              Algorithm
-            </Box>
-          </GridItem>
-          <GridItem colSpan={1}>
-            <Box bg="white" p={4} borderRadius="md">
-              <Input mb={4} placeholder="Search" />
-              <ConnectedNavigate />
-            </Box>
-          </GridItem>
-          <GridItem colSpan={4}>
-            <Box bg="white" p={4} borderRadius="md"></Box>
-          </GridItem>
-        </Grid>
-      </Container>
-    </Box>
+    <StandardLayout>
+      <Box pb={20} pt={4}>
+        <Text fontSize="xl">News</Text>
+        <ConnectedNewsList />
+      </Box>
+    </StandardLayout>
   );
 }
