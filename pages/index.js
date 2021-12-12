@@ -6,7 +6,7 @@ function NewsList(props) {
   return (
     <>
       {props.news.map((n) => (
-        <Box key={n.id} mt={4} p={4} bg="white">
+        <Box key={n.id} mt={8} p={4} bg="white">
           <Text fontSize="2xl">{n.title}</Text>
           <Grid templateColumns="repeat(4, 1fr)" gap={4} mt={4}>
             <GridItem colSpan={1}>
@@ -39,8 +39,10 @@ const ConnectedNewsList = connect(mapState2NewsListProps)(NewsList);
 export default function Home() {
   return (
     <StandardLayout>
-      <Box pb={20} pt={4}>
-        <Text fontSize="xl">News</Text>
+      <Box pb={20}>
+        <Text fontSize="xl" mt={8}>
+          News
+        </Text>
         <ConnectedNewsList />
       </Box>
     </StandardLayout>

@@ -6,10 +6,13 @@ import {
   Text,
   IconButton,
   Checkbox,
+  Spacer,
+  Link,
 } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 import { connect } from "react-redux";
 import Navigate from "../components/navigate";
+import NextLink from "next/link";
 
 const mapState2NavigateProps = (state) => ({
   items: state.document.data,
@@ -24,9 +27,22 @@ export default function StandardLayout(props) {
         <Container maxW="contrainer.xl">
           <Flex>
             <Center px={2}>
-              <Text>Algorithm</Text>
+              <Text borderRadius={4} color="red.600">
+                GADS
+              </Text>
             </Center>
-            <Center px={2} flex={1}>
+            <Center px={2} borderLeftWidth={1}>
+              <Link as={NextLink} href="/">
+                Home
+              </Link>
+            </Center>
+            <Center px={2}>
+              <Link as={NextLink} href="/">
+                Recently documents
+              </Link>
+            </Center>
+            <Spacer></Spacer>
+            <Center px={2} width={500}>
               <Input placeholder="Search" />
             </Center>
             <Center pl={2}>
