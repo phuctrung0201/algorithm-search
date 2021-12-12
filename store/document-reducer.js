@@ -1,28 +1,23 @@
 import { createSlice } from "@reduxjs/toolkit";
+import {
+  document1,
+  document2,
+  document3,
+  document4,
+  document5,
+  document6,
+  document7,
+} from "../data/documents";
 
 const initialState = {
   data: [
-    {
-      id: 1,
-      label: "Alogrithms",
-      subs: [
-        { id: 2, label: "Quick sort" },
-        { id: 5, label: "Merge sort" },
-        { id: 6, label: "Selection sort" },
-        { id: 4, label: "Binary search" },
-      ],
-    },
-    {
-      id: 3,
-      label: "Data Structure",
-      subs: [
-        { id: 7, label: "Binary tree" },
-        { id: 8, label: "Balance tree" },
-        { id: 9, label: "Linked list" },
-        { id: 10, label: "Stack" },
-        { id: 11, label: "Queue" },
-      ],
-    },
+    document1,
+    document2,
+    document3,
+    document4,
+    document5,
+    document6,
+    document7,
   ],
 };
 

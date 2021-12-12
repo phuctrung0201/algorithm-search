@@ -15,7 +15,7 @@ import Navigate from "../components/navigate";
 import NextLink from "next/link";
 
 const mapState2NavigateProps = (state) => ({
-  items: state.document.data,
+  items: state.document.data.filter((d) => d.subs),
 });
 
 const ConnectedNavigate = connect(mapState2NavigateProps)(Navigate);
