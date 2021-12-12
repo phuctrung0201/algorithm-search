@@ -13,14 +13,45 @@ import { SearchIcon } from "@chakra-ui/icons";
 import { connect } from "react-redux";
 import Navigate from "../components/navigate";
 import NextLink from "next/link";
+import { useCallback, useMemo } from "react";
+import { useRouter } from "next/dist/client/router";
 
 const mapState2NavigateProps = (state) => ({
-  items: state.document.data.filter((d) => d.subs),
+  items: state.document.data
+    .filter((d) => d.subs)
+    .map((d) => {
+      const subs = d.subs.map((ds) => ({
+        ...ds,
+        eventData: {
+          docId: ds.id,
+        },
+      }));
+
+      return { ...d, subs };
+    }),
 });
 
 const ConnectedNavigate = connect(mapState2NavigateProps)(Navigate);
 
 export default function StandardLayout(props) {
+  const router = useRouter();
+
+  const relatedDocumentAvailable = useMemo(() => {
+    const availableRoutes = ["/documents/[id]"];
+
+    return availableRoutes.includes(router.pathname);
+  }, [router.pathname]);
+
+  const handleNavigate = useCallback((event) => {
+    switch (event.name) {
+      case "redirect":
+        router.push(`/documents/${event.data.docId}`);
+        return;
+      default:
+        return;
+    }
+  }, []);
+
   return (
     <Flex direction="column" h="100vh">
       <Box py={2} borderBottomWidth={1}>
@@ -55,31 +86,37 @@ export default function StandardLayout(props) {
         <GridItem colSpan={1} borderRightWidth={1}>
           <Box py={2}>
             <Container maxW="container.xl">
-              <ConnectedNavigate />
+              <ConnectedNavigate handleEvent={handleNavigate} />
             </Container>
           </Box>
         </GridItem>
-        <GridItem bg="gray.50" colSpan={4} overflow="auto">
+        <GridItem
+          bg="gray.50"
+          colSpan={relatedDocumentAvailable ? 4 : 5}
+          overflow="auto"
+        >
           <Container maxW="container.xl">{props.children}</Container>
         </GridItem>
-        <GridItem colSpan={1} borderLeftWidth={1}>
-          <Box py={2}>
-            <Container maxW="container.xl">
-              <Box borderBottomWidth={1} pb={2}>
-                <Text>Related documents:</Text>
-                <Box>
-                  <Checkbox defaultIsChecked>Topic</Checkbox>
+        {!relatedDocumentAvailable ? null : (
+          <GridItem colSpan={1} borderLeftWidth={1}>
+            <Box py={2}>
+              <Container maxW="container.xl">
+                <Box borderBottomWidth={1} pb={2}>
+                  <Text>Related documents:</Text>
+                  <Box>
+                    <Checkbox defaultIsChecked>Topic</Checkbox>
+                  </Box>
+                  <Box>
+                    <Checkbox defaultIsChecked>Complexity Time</Checkbox>
+                  </Box>
+                  <Box>
+                    <Checkbox defaultIsChecked>Complexity Space</Checkbox>
+                  </Box>
                 </Box>
-                <Box>
-                  <Checkbox defaultIsChecked>Complexity Time</Checkbox>
-                </Box>
-                <Box>
-                  <Checkbox defaultIsChecked>Complexity Space</Checkbox>
-                </Box>
-              </Box>
-            </Container>
-          </Box>
-        </GridItem>
+              </Container>
+            </Box>
+          </GridItem>
+        )}
       </Grid>
     </Flex>
   );

@@ -30,7 +30,7 @@ function NavigateItem(props) {
       default:
         break;
     }
-    props.eventHandle({
+    props.handleEvent({
       name: event,
       data,
     });
@@ -54,7 +54,7 @@ function NavigateItem(props) {
           <NavigateItem
             {...item}
             key={item.id}
-            eventHandle={props.eventHandle}
+            handleEvent={props.handleEvent}
           />
         ))}
     </Box>
@@ -64,7 +64,7 @@ function NavigateItem(props) {
 NavigateItem.defaultProps = {
   label: "label",
   eventData: "event data",
-  eventHandle: (event) => {},
+  handleEvent: (event) => {},
   subs: [],
 };
 
@@ -72,7 +72,7 @@ function Navigate(props) {
   return (
     <Box>
       {props.items.map((item) => (
-        <NavigateItem {...item} key={item.id} eventHandle={props.eventHandle} />
+        <NavigateItem {...item} key={item.id} handleEvent={props.handleEvent} />
       ))}
     </Box>
   );
@@ -80,7 +80,7 @@ function Navigate(props) {
 
 Navigate.defaultProps = {
   item: [],
-  eventHandle: (event) => {},
+  handleEvent: (event) => {},
 };
 
 export default Navigate;
