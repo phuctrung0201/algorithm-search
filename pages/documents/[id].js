@@ -13,13 +13,17 @@ function DocumentDetail(props) {
         <Text fontSize="xl">Overviwe</Text>
         <Box mt={4}>
           {props.document.sections.map((s) => (
-            <Text key={`o-${s.id}`}># {s.title}</Text>
+            <Text key={`o-${s.id}`}>
+              <a href={`#${s.id}`} key={`o-${s.id}`}># {s.title}</a>
+            </Text>
           ))}
         </Box>
       </Box>
       {props.document.sections.map((s) => (
-        <Box key={s.id} p={4} mt={8} bg="white">
-          <Text fontSize="xl">{s.title}</Text>
+        <Box id={s.id} key={s.id} p={4} mt={8} bg="white">
+          <Box w='100%' p={0} color='black'>
+            <Text fontSize="xl">{s.title}</Text>
+          </Box>
           <Box mt={4}>{s.content}</Box>
         </Box>
       ))}
@@ -42,7 +46,9 @@ const ConnectedDocumentDetail = connect(mapState2DocumentDetailProps)(
 export default function DocumentById() {
   const router = useRouter();
   const { id } = router.query;
-
+  useEffect(() => {
+    console.log(id)
+  },[id])
   return (
     <StandardLayout>
       <ConnectedDocumentDetail docId={id}></ConnectedDocumentDetail>
