@@ -46,9 +46,6 @@ const ConnectedDocumentDetail = connect(mapState2DocumentDetailProps)(
 export default function DocumentById() {
   const router = useRouter();
   const { id } = router.query;
-  useEffect(() => {
-    console.log(id)
-  },[id])
   return (
     <StandardLayout>
       <ConnectedDocumentDetail docId={id}></ConnectedDocumentDetail>
