@@ -2,9 +2,9 @@ const section = {
     id: 23,
     title: "Insert Operation Algorithm",
     content:
-    <html>
+    `<html>
         <p>Whenever an element is to be inserted, first locate its proper location. Start searching from the root node, then if the data is less than the key value, search for the empty location in the left subtree and insert the data. Otherwise, search for the empty location in the right subtree and insert the data.</p>
-        <pre style={{ display: "block", backgroundColor: "#eee", border: "1px solid #999" }}>{`
+        <pre style="background-color: #eee; border: 1px solid #999; display: block">
             void insert(int data) {
                 struct node *tempNode = (struct node*) malloc(sizeof(struct node));
                 struct node *current;
@@ -46,7 +46,7 @@ const section = {
                 }            
                 }
             }  
-        `}</pre>
-    </html>
+        </pre>
+    </html>`
 };
 export default section;

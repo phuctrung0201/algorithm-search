@@ -2,9 +2,9 @@ const section = {
     id: 8,
     title: "Pseudocode",
     content:
-    <html>
+    `<html>
         <p>We shall now see the pseudocodes for merge sort functions. As our algorithms point out two main functions − divide and merge.</p>
-        <pre style={{ display: "block", backgroundColor: "#eee", border: "1px solid #999" }}>{`
+        <pre style="background-color: #eee; border: 1px solid #999; display: block">
             procedure mergesort( var a as array )
             if ( n == 1 ) return a
 
@@ -43,7 +43,7 @@ const section = {
             return c
             
             end procedure
-        `}</pre>
-    </html>
+        </pre>
+    </html>`
 };
 export default section;

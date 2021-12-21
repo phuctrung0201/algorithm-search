@@ -2,8 +2,8 @@ const section = {
     id: 14,
     title: "Pseudocode",
     content:
-    <html>
-        <pre style={{ display: "block", backgroundColor: "#eee", border: "1px solid #999" }}>{`
+    `<html>
+        <pre style="background-color: #eee; border: 1px solid #999; display: block">
             Procedure binary_search
             A ← sorted array
             n ← size of array
@@ -29,7 +29,7 @@ const section = {
             end while
             
          end procedure
-        `}</pre>
-    </html>
+        </pre>
+    </html>`
 };
 export default section;

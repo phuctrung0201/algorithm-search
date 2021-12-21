@@ -2,8 +2,8 @@ const section = {
   id: 5,
   title: "Quick Sort Pseudocode",
   content:
-  <html>
-    <pre style={{ display: "block", backgroundColor: "#eee", border: "1px solid #999" }}>{`
+  `<html>
+    <pre style="background-color: #eee; border: 1px solid #999; display: block">
         procedure quickSort(left, right)
 
         if right-left <= 0
@@ -16,7 +16,7 @@ const section = {
         end if		
 
         end procedure
-    `}</pre>
-  </html>
+    </pre>
+  </html>`
 };
 export default section;
