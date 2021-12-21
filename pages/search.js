@@ -17,7 +17,7 @@ const checkInclude = (sectionsF, sectionsS) => {
 const Search = () => {
     const router = useRouter();
     const [documentsMatch, setDocumentsMatch] = useState([]);
-    const q = router.query["q"].trim().toLowerCase();
+    const q = router.query["q"]?.trim().toLowerCase();
     useEffect(() => {
         const matchedSections = [];
         for (let field in sections) {
