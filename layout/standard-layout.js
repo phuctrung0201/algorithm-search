@@ -9,11 +9,11 @@ import {
   Spacer,
   Link,
 } from "@chakra-ui/react";
-import { SearchIcon } from "@chakra-ui/icons";
+import { ArrowUpIcon, SearchIcon } from "@chakra-ui/icons";
 import { connect } from "react-redux";
 import Navigate from "../components/navigate";
 import NextLink from "next/link";
-import { useCallback, useMemo } from "react";
+import { useCallback, useMemo, useRef } from "react";
 import { useRouter } from "next/dist/client/router";
 
 const mapState2NavigateProps = (state) => ({
@@ -35,6 +35,7 @@ const ConnectedNavigate = connect(mapState2NavigateProps)(Navigate);
 
 export default function StandardLayout(props) {
   const router = useRouter();
+  const contentRef = useRef();
 
   const relatedDocumentAvailable = useMemo(() => {
     const availableRoutes = ["/documents/[id]"];
@@ -51,6 +52,10 @@ export default function StandardLayout(props) {
         return;
     }
   }, []);
+
+  const handleScrollToTop = () => {
+    contentRef.current.scrollTop = 0;
+  };
 
   return (
     <Flex direction="column" h="100vh">
@@ -83,17 +88,29 @@ export default function StandardLayout(props) {
         </Container>
       </Box>
       <Grid templateColumns="repeat(6, 1fr)" overflow="hidden" flex={1}>
-        <GridItem colSpan={1} borderRightWidth={1}>
+        <GridItem colSpan={1} borderRightWidth={1} position="relative">
           <Box py={2}>
             <Container maxW="container.xl">
               <ConnectedNavigate handleEvent={handleNavigate} />
             </Container>
           </Box>
+          <IconButton
+            icon={<ArrowUpIcon />}
+            colorScheme="teal"
+            variant="solid"
+            position="absolute"
+            right={-50}
+            bottom={10}
+            zIndex={1}
+            onClick={handleScrollToTop}
+            opacity={0.5}
+          ></IconButton>
         </GridItem>
         <GridItem
           bg="gray.50"
           colSpan={relatedDocumentAvailable ? 4 : 5}
           overflow="auto"
+          ref={contentRef}
         >
           <Container maxW="container.xl">{props.children}</Container>
         </GridItem>
