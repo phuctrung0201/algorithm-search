@@ -7,6 +7,18 @@ import {
   document5,
   document6,
   document7,
+  document8,  
+  document9,
+  document10,
+  document11,
+  document12,
+  document13,
+  document14, 
+  document15,
+  document16,
+  document17,
+  document18,
+  document19,
 } from "../data/documents";
 
 const initialState = {
@@ -18,6 +30,18 @@ const initialState = {
     document5,
     document6,
     document7,
+    document8,  
+    document9,
+    document10,
+    document11,
+    document12,
+    document13,
+    document14, 
+    document15,
+    document16,
+    document17,
+    document18,
+    document19,
   ],
 };
 

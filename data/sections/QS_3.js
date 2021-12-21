@@ -2,9 +2,9 @@ const section = {
   id: 3,
   title: "Quick Sort Pivot Pseudocode",
   content:
-  <html>
+  `<html>
     <body>
-    <pre style={{ display: "block", backgroundColor: "#eee", border: "1px solid #999" }}>{`
+    <pre style="background-color: #eee; border: 1px solid #999; display: block">
         function partitionFunc(left, right, pivot)
           leftPointer = left
           rightPointer = right - 1
@@ -30,8 +30,8 @@ const section = {
           return leftPointer
       
         end function
-    `}</pre>
+    </pre>
     </body>
-  </html>
+  </html>`
 };
 export default section;

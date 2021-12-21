@@ -2,9 +2,9 @@ const section = {
     id: 22,
     title: "Search Operation Algorithm",
     content:
-    <html>
+    `<html>
         <p>Whenever an element is to be searched, start searching from the root node. Then if the data is less than the key value, search for the element in the left subtree. Otherwise, search for the element in the right subtree. Follow the same algorithm for each node.</p>
-        <pre style={{ display: "block", backgroundColor: "#eee", border: "1px solid #999" }}>{`
+        <pre style="background-color: #eee; border: 1px solid #999; display: block">
             struct node* search(int data){
                 struct node *current = root;
                 printf("Visiting elements: ");
@@ -31,7 +31,7 @@ const section = {
                 
                 return current;
             }
-        `}</pre>
-    </html>
+        </pre>
+    </html>`
 };
 export default section;
