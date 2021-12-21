@@ -24,7 +24,9 @@ function DocumentDetail(props) {
           <Box w='100%' p={0} color='black'>
             <Text fontSize="xl">{s.title}</Text>
           </Box>
-          <Box mt={4}>{s.content}</Box>
+          <Box mt={4}>
+            <div dangerouslySetInnerHTML={{ __html: s.content }}></div>
+          </Box>
         </Box>
       ))}
     </Box>
