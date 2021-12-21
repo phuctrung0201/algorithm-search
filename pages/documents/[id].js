@@ -1,9 +1,28 @@
 import { Box, Text } from "@chakra-ui/react";
 import { useRouter } from "next/dist/client/router";
+import { useEffect } from "react";
 import { connect } from "react-redux";
 import StandardLayout from "../../layout/standard-layout";
 
 function DocumentDetail(props) {
+
+  useEffect(() => {
+    //handle recently docs
+    const docs = localStorage.getItem('recently-docs')
+    if (!docs) {
+      const initDocs = [props.docId]
+      localStorage.setItem('recently-docs', JSON.stringify(initDocs))
+      return
+    }
+    let documents = JSON.parse(docs)
+    if (documents[0] !== props.docId) {
+      documents = documents.filter(i => i !== props.docId && i)
+      documents.unshift(props.docId)
+      documents = documents.slice(0, 10)
+      localStorage.setItem('recently-docs', JSON.stringify(documents))
+    }
+  }, [props])
+
   if (!props.document) return null;
 
   return (
@@ -24,7 +43,9 @@ function DocumentDetail(props) {
           <Box w='100%' p={0} color='black'>
             <Text fontSize="xl">{s.title}</Text>
           </Box>
-          <Box mt={4}>{s.content}</Box>
+          <Box mt={4}>
+            <div dangerouslySetInnerHTML={{ __html: s.content }}></div>
+          </Box>
         </Box>
       ))}
     </Box>

@@ -13,7 +13,7 @@ import { ArrowUpIcon, SearchIcon } from "@chakra-ui/icons";
 import { connect } from "react-redux";
 import Navigate from "../components/navigate";
 import NextLink from "next/link";
-import { useCallback, useMemo, useRef } from "react";
+import { useCallback, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/dist/client/router";
 
 const mapState2NavigateProps = (state) => ({
@@ -36,7 +36,7 @@ const ConnectedNavigate = connect(mapState2NavigateProps)(Navigate);
 export default function StandardLayout(props) {
   const router = useRouter();
   const contentRef = useRef();
-
+  const [keySearch, setKeySearch] = useState(router.query['q'] || '');
   const relatedDocumentAvailable = useMemo(() => {
     const availableRoutes = ["/documents/[id]"];
 
@@ -57,6 +57,22 @@ export default function StandardLayout(props) {
     contentRef.current.scrollTop = 0;
   };
 
+  const handleChange = (event) => {
+    setKeySearch(event.target.value);
+  }
+
+  const handleKeyUp = (event) => {
+    if (event.keyCode === 13) {
+      pushToSearchPage()
+    }
+  }
+
+  const pushToSearchPage = () => {
+    if (keySearch) {
+      router.push(`/search?q=${keySearch}`)
+    }
+  }
+
   return (
     <Flex direction="column" h="100vh">
       <Box py={2} borderBottomWidth={1}>
@@ -73,16 +89,16 @@ export default function StandardLayout(props) {
               </Link>
             </Center>
             <Center px={2}>
-              <Link as={NextLink} href="/">
+              <Link as={NextLink} href="/recently-documents">
                 Recently documents
               </Link>
             </Center>
             <Spacer></Spacer>
             <Center px={2} width={500}>
-              <Input placeholder="Search" />
+              <Input onChange={handleChange} onKeyUp={handleKeyUp} value={keySearch} placeholder="Search" />
             </Center>
             <Center pl={2}>
-              <IconButton aria-label="Search database" icon={<SearchIcon />} />
+              <IconButton onClick={() => { pushToSearchPage() }} aria-label="Search database" icon={<SearchIcon />} />
             </Center>
           </Flex>
         </Container>
