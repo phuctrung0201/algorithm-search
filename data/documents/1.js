@@ -4,7 +4,7 @@ import document4 from "./4";
 
 const document = {
   id: 1,
-  label: "Alogrithms",
+  label: "Sorting Techniques",
   subs: [document2, document3, document4],
 };
 
