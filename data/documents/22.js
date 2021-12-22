@@ -1,11 +1,11 @@
-import { section25,section27, section28 } from "../sections";
+import { section97,section98, section99, } from "../sections";
 
 const document = {
-  id: 97,
+  id: 22,
   label: "Algorihms",
   complexity_time: "",  
   complexity_space: "",
-  sections: [section25,section27, section28],
+  sections: [ section97,section98, section99,],
 };
 
 export default document;

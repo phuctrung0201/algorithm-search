@@ -1,5 +1,5 @@
 const section = {
-    id: 98,
+    id: 95,
     title: "Introduction to Data Structures and Algorithms",
     content:
     `<html><div id="body-content" class="fs-5">
