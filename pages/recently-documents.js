@@ -20,8 +20,13 @@ const Recently = () => {
     }, []);
     return (
         <StandardLayout>
+            <div style={{ padding: "10px" }}>
+                <h1 style={{ fontSize: "25px", fontWeight: "bold" }}>
+                    {docList.length} Recently viewed documents
+                </h1>
+            </div>
             {docList.map((n) => (
-                <div style={{ maxHeight: "245px", overflow: "hidden" }} key={n.id}>
+                <div style={{  }} key={n.id}>
                     <Box mt={8} p={4} bg="white">
                         <Text
                             fontSize="2xl"
