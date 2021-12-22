@@ -20,10 +20,15 @@ import {
   document18,
   document19,
   document20,
+  document21,
+  document22,
 } from "../data/documents";
 
 const initialState = {
   data: [
+    document20,
+    document21,
+    document22,
     document1,
     document2,
     document3,

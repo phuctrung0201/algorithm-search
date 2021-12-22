@@ -1,11 +1,10 @@
-import { section40, section41, section42, section43 } from "../sections";
+import document21 from "./21";
+import document22 from "./22";
 
 const document = {
-    id: 20,
-    label: "Selection sort",
-    complexity_time: "n^2",  
-    complexity_space: "n^2",
-    sections: [ section40, section41, section42, section43 ],
+  id: 99,
+  label: "Introduction",
+  subs: [document21, document22],
 };
 
 export default document;
