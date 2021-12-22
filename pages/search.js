@@ -18,29 +18,62 @@ const Search = () => {
     const router = useRouter();
     const [documentsMatch, setDocumentsMatch] = useState([]);
     const q = router.query["q"]?.trim().toLowerCase();
+    const filterDocument = router.query['document'] == '1'
+    const filterSection = router.query['section'] == '1'
+    const filterContent = router.query['content'] == '1'
+
+    const handleSaveKeySeach = () => {
+        const keyListStr = localStorage.getItem('key-list')
+        if (keyListStr) {
+            let keyList = JSON.parse(keyListStr);
+            if (keyList[0] != q) {
+                keyList.unshift(q)
+                if (keyList.length > 10) {
+                    keyList = keyList.slice(0, 10)
+                }
+                localStorage.setItem('key-list', JSON.stringify(keyList))
+            }
+        } else {
+            const keyList = [q]
+            localStorage.setItem('key-list', JSON.stringify(keyList))
+        }
+    }
     useEffect(() => {
+
         const matchedSections = [];
         for (let field in sections) {
             if (typeof sections[field].content !== "string") continue;
             if (
-                sections[field].title.includes(q) ||
-                sections[field].content.includes(q)
+                filterContent && sections[field].content.toLowerCase().includes(q)
+            ) {
+                matchedSections.push(sections[field]);
+                continue;
+            }
+            if (
+                filterSection && sections[field].title.toLowerCase().includes(q)
             ) {
                 matchedSections.push(sections[field]);
             }
         }
         let docs = [];
         for (let field in documents) {
-            console.log(documents[field]);
             if (!documents[field].sections) continue;
+            if (documents[field].label.toLowerCase().includes(q) && filterDocument) {
+                docs.push(documents[field]);
+                continue;
+            }
             if (
-                documents[field].label.toLowerCase().includes(q) ||
                 checkInclude(matchedSections, documents[field].sections)
             )
                 docs.push(documents[field]);
+
         }
         setDocumentsMatch(docs);
-    }, [q]);
+        if (docs.length > 0) {
+            handleSaveKeySeach()
+        }
+    }, [q, filterDocument, filterSection, filterContent]);
+
     return (
         <StandardLayout>
             <div style={{ marginBottom: "100px" }}>
