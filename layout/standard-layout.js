@@ -47,12 +47,6 @@ const mapState2RelatedNavigateProps = (state, ownProps) => {
     state.document.data
       .find((d) => d.subs && d.subs.find((doc) => doc.id == ownProps.docId))
       .subs.filter((ds) => ds.id != ownProps.docId)
-      .map((ds) => ({
-        ...ds,
-        eventData: {
-          docId: ds.id,
-        },
-      }))
       .forEach((ds) => {
         if (!resultById[ds.id]) resultById[ds.id] = ds;
       });
@@ -81,7 +75,12 @@ const mapState2RelatedNavigateProps = (state, ownProps) => {
   }
 
   return {
-    items: Object.values(resultById),
+    items: Object.values(resultById).map((ds) => ({
+      ...ds,
+      eventData: {
+        docId: ds.id,
+      },
+    })),
   };
 };
 
