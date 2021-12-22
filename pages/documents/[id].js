@@ -28,7 +28,7 @@ function DocumentDetail(props) {
     <Box pt={4} pb={20}>
       <Text fontSize="2xl">{props.document.label}</Text>
       <Box p={4} mt={4} bg="white">
-        <Text fontSize="xl">Overviwe</Text>
+        <Text fontSize="xl">Overview</Text>
         <Box mt={4}>
           {props.document.sections.map((s) => (
             <Text key={`o-${s.id}`}>

@@ -32,6 +32,11 @@ import section20 from "./BST_20"
 import section21 from "./BST_21"
 import section22 from "./BST_22"
 import section23 from "./BST_23"
+import section24 from "./Intro-ds1"
+import section26 from "./Intro-ds2"
+import section25 from "./Intro-algo"
+import section27 from "./Intro-algo2"
+import section28 from "./Intro-algo3"
 
 import temp from "./temp.js"
 
@@ -41,5 +46,6 @@ export { section1, section2, section3, section4, section5,
          section12, section13, section14,
          section15, section16, section17,
          temp,
-         section18, section19, section20, section21, section22, section23
+         section18, section19, section20, section21, section22, section23,
+         section24, section25, section26,section27, section28,
 };
