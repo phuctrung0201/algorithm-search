@@ -22,13 +22,14 @@ import {
   document20,
   document21,
   document22,
+  document23,
 } from "../data/documents";
 
 const initialState = {
-  data: [
+  data: [    
     document20,
     document21,
-    document22,
+    document22, 
     document1,
     document2,
     document3,
@@ -47,7 +48,8 @@ const initialState = {
     document16,
     document17,
     document18,
-    document19,
+    document19, 
+    document23,
   ],
 };
 

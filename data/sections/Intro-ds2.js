@@ -1,5 +1,5 @@
 const section = {
-    id: 100,
+    id: 96,
     title: "Basic types of Data Structures",
     content:
     `<html>
