@@ -17,6 +17,7 @@ import document16 from "./16";
 import document17 from "./17";
 import document18 from "./18";
 import document19 from "./19";
+import document20 from "./20";
 
 
 export {
@@ -39,4 +40,5 @@ export {
   document17,
   document18,
   document19,
+  document20,
 };

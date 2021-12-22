@@ -19,6 +19,7 @@ import {
   document17,
   document18,
   document19,
+  document20,
 } from "../data/documents";
 
 const initialState = {
@@ -42,6 +43,7 @@ const initialState = {
     document17,
     document18,
     document19,
+    document20,
   ],
 };
 
